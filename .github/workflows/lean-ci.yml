@@ -10,28 +10,16 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Install Elan & Lean
-      uses: leanprover/lean-action@v1
-      with:
-        lake-package-directory: 'LeanProject'
-        # T.O.N.E.-Fix: Verhindert, dass die Action automatisch abstürzt, bevor wir das Manifest bauen
-        auto-config: false
-        build: false
-
-    # Jetzt erzeugen wir das Manifest manuell im sauberen Raum
-    - name: Generate Lake Manifest
+    # T.O.N.E.-Fix: Autarke Elan-Installation direkt über das offizielle Shell-Skript, vorbei an der verbuggten Action
+    - name: Install Elan Toolchain Manager
       run: |
+        curl -sSfL https://leanprover.org | sh -s -- -y --default-toolchain none
+        echo "$HOME/.elan/bin" >> $GITHUB_PATH
+
+    # Manifest generieren UND direkt bauen in einem Rutsch, direkt im richtigen Ordner
+    - name: Generate Manifest and Build Lean Project
+      run: |
+        export PATH="$HOME/.elan/bin:$PATH"
         cd LeanProject
         lake update
-
-    # Jetzt bauen wir das Projekt händisch
-    - name: Build Lean Project
-      run: |
-        cd LeanProject
-        lake build
-
-
-    - name: Build Lean Project
-      run: |
-        cd LeanProject
         lake build
