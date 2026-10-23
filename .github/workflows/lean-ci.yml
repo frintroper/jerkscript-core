@@ -13,8 +13,13 @@ jobs:
     - name: Install Elan & Lean
       uses: leanprover/lean-action@v1
       with:
-        # T.O.N.E.-Fix: Exakter Parametername aus dem GitHub-Fehlerprotokoll
         lake-package-directory: 'LeanProject'
+
+    # T.O.N.E.-Fix: Automatisches Generieren des fehlenden Manifests im Runner-Raum
+    - name: Update Lake Dependencies
+      run: |
+        cd LeanProject
+        lake update
 
     - name: Build Lean Project
       run: |
