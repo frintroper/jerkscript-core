@@ -10,22 +10,21 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Install Elan Toolchain Manager
+    # T.O.N.E.-Fix: Alles in einem Block, damit der PATH zu elan absolut stabil bleibt
+    - name: Autarkic Elan Setup and Lake Build
       run: |
+        # 1. Elan ohne Interaktion installieren
         curl -sSfL https://leanprover.org | sh -s -- -y --default-toolchain none
-        echo "$HOME/.elan/bin" >> $GITHUB_PATH
-
-    # T.O.N.E.-Fix: Die exakte Lean-Version aktiv in den Runner-Raum laden
-    - name: Install Specific Lean Toolchain
-      run: |
+        
+        # 2. Elan-Pfad für diesen spezifischen Prozess erzwingen
         export PATH="$HOME/.elan/bin:$PATH"
+        
+        # 3. In das Projektverzeichnis wechseln
         cd LeanProject
-        elan toolchain install $(cat lean-toolchain)
-
-    - name: Generate Manifest and Build Lean Project
-      run: |
-        export PATH="$HOME/.elan/bin:$PATH"
-        cd LeanProject
+        
+        # 4. Toolchain direkt basierend auf der lean-toolchain-Datei installieren
+        elan toolchain install
+        
+        # 5. Manifest erzeugen und das Projekt fehlerfrei kompilieren
         lake update
         lake build
-
