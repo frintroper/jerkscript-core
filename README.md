@@ -9,6 +9,8 @@ Traditional computer science frameworks and formal proof tools (e.g., Lean) suff
 *   `/LeanProject`: Contains the formal Lean 4 proof validating the `system_t_free` theorem under T.O.N.E. mechanics.
 *   `jerkscript.html`: The interactive, autarkic bare-metal operational kernel compiler. Run locally.
 *   `jerkscript_manifest.tex`: The mathematical LaTeX manifest detailing the scale inversion formulas ($j = 1/j$).
+•    `jerkscript_compiler_prompt.txt`: The Stufe-3 System-Prompt to bootstrap any standard Large Language Model into a native JerkScript emulator interface.
+
 
 ## Core Keywords & Syntax
 JerkScript bypasses standard compiler cycles using four fundamental primitives:
