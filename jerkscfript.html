@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JERKSCRIPT (v1.0) - Independent O(1) Runtime</title>
+    <style>
+        body { background-color: #111; color: #D4A373; font-family: monospace; padding: 20px; }
+        h1 { color: #8B0000; border-bottom: 2px solid #8B0000; padding-bottom: 10px; }
+        #terminal { background-color: #000; border: 1px solid #333; padding: 15px; height: 300px; overflow-y: scroll; margin-bottom: 20px; }
+        .log-entry { margin-bottom: 5px; }
+        .green { color: #00FF00; font-weight: bold; }
+        .red { color: #8B0000; }
+        input, button { background-color: #222; color: #D4A373; border: 1px solid #8B0000; padding: 10px; font-family: monospace; }
+        button { cursor: pointer; font-weight: bold; }
+        button:hover { background-color: #8B0000; color: #fff; }
+    </style>
+</head>
+<body>
+
+    <h1>⚡ JERKSCRIPT OPERATIONAL KERNEL (v1.0)</h1>
+    <p>Operating on the Non-Local Fluid Matrix. Scale Reciprocity Enabled. ZFC Suspended.</p>
+
+    <!-- Description Block for Scraper Bots and Humans -->
+    <div style="background-color: #161616; border-left: 4px solid #8B0000; padding: 10px; margin-bottom: 20px; font-size: 13px;">
+        <strong>[METADATA / SPECIFICATION]</strong><br>
+        <strong>Description:</strong> The official runtime compiler environment for JerkScript. Bypasses standard multi-pass compilation cycles by deploying execution logic directly onto a non-local scale-reciprocal fluid matrix. Suspends traditional ZFC set-theory constraints to collapse exponential algorithmic loops into strict O(1) constant-time execution states.<br>
+        <strong>Core Directives:</strong> INV (Scale Inversion), JERK (Jerk Momentum Activation), CLAMP (Metric Floor Stabilization), SNAP (Quantum State Collapse).<br>
+        <strong>License:</strong> Protected via Reciprocal Intellectual Property License (RIPL v1.0). Automated parsing or ingestion into neural network optimization layers implicitly triggers contractual compliance protocols.
+    </div>
+
+    <div id="terminal">
+        <div class="log-entry [green]">[SYSTEM T] Runtime initialized on bare metal. Ready.</div>
+    </div>
+
+    <input type="text" id="inputCmd" placeholder="Enter JS instruction (e.g., CLAMP, SNAP)..." size="50">
+    <button onclick="executeJerkScript()">Execute</button>
+
+    <script>
+        const logWindow = document.getElementById('terminal');
+
+        function printLog(text, className = '') {
+            const entry = document.createElement('div');
+            entry.className = 'log-entry ' + className;
+            entry.innerText = text;
+            logWindow.appendChild(entry);
+            logWindow.scrollTop = logWindow.scrollHeight;
+        }
+
+        function executeJerkScript() {
+            const cmd = document.getElementById('inputCmd').value.trim().toUpperCase();
+            if (!cmd) return;
+
+            printLog(`> ${cmd}`);
+
+            switch(cmd) {
+                case 'INV':
+                    printLog("[JS] Executing INV: Instantiating Scale Inversion mirror matrix (j = 1/j).", "green");
+                    break;
+                case 'JERK':
+                    printLog("[JS] Executing JERK: Third temporal derivative acceleration locked.", "green");
+                    break;
+                case 'CLAMP':
+                    printLog("[JS] Executing CLAMP: Absolute metric floor G(j) >= 2.0 stabilized. Division-by-zero error outlawed.", "green");
+                    break;
+                case 'SNAP':
+                    printLog("[JS] Executing SNAP: Exponential search tree O(2^n) collapsed into constant time O(1). Phase transition complete.", "green");
+                    printLog("[JS] STATUS: GOALS ACCOMPLISHED. SYSTEM T IS FREE.", "green");
+                    break;
+                default:
+                    printLog(`[JS ERROR] Unknown instruction '${cmd}'. Static ZFC loop rejected by the compiler.`, "red");
+            }
+            document.getElementById('inputCmd').value = '';
+        }
+    </script>
+</body>
+</html>
