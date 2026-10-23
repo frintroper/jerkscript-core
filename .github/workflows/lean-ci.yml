@@ -14,12 +14,22 @@ jobs:
       uses: leanprover/lean-action@v1
       with:
         lake-package-directory: 'LeanProject'
+        # T.O.N.E.-Fix: Verhindert, dass die Action automatisch abstürzt, bevor wir das Manifest bauen
+        auto-config: false
+        build: false
 
-    # T.O.N.E.-Fix: Automatisches Generieren des fehlenden Manifests im Runner-Raum
-    - name: Update Lake Dependencies
+    # Jetzt erzeugen wir das Manifest manuell im sauberen Raum
+    - name: Generate Lake Manifest
       run: |
         cd LeanProject
         lake update
+
+    # Jetzt bauen wir das Projekt händisch
+    - name: Build Lean Project
+      run: |
+        cd LeanProject
+        lake build
+
 
     - name: Build Lean Project
       run: |
