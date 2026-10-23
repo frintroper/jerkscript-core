@@ -7,11 +7,15 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
+    # Aktualisiert auf v4, um Kompatibilität mit Node 24 zu sichern
     - name: Checkout repository
       uses: actions/checkout@v4
 
     - name: Install Elan & Lean
       uses: leanprover/lean-action@v1
+      with:
+        # Führt die Action direkt im Unterordner aus
+        project-directory: 'LeanProject'
 
     - name: Build Lean Project
       run: |
